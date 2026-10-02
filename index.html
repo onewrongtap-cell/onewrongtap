@@ -5672,8 +5672,15 @@ window.addEventListener(
 ===================================================== */
 
 rewardedAdButton.addEventListener(
-    "pointerdown",
-    async () => {
+    "click",
+    async function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (rewardedAdButton.disabled) {
+            return;
+        }
 
         try {
 
@@ -5681,7 +5688,9 @@ rewardedAdButton.addEventListener(
 
             await showRewardedAd();
 
-            console.log("Rewarded ad finished");
+            console.log(
+                "Rewarded ad finished"
+            );
 
         } catch (error) {
 
@@ -5696,7 +5705,6 @@ rewardedAdButton.addEventListener(
 
     }
 );
-
 /* =====================================================
    MOBILE PROTECTION
 ===================================================== */
